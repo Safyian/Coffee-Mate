@@ -109,7 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: "Password"
                         // focusColor: Colors.amber,
                         ),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     validator: (val) {
                       if (val!.isEmpty) {
                         return 'Please enter a Password';

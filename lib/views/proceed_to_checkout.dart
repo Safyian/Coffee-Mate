@@ -39,6 +39,7 @@ class _ProceedToCheckoutState extends State<ProceedToCheckout> {
           child: GestureDetector(
             onTap: () {
               controller.myCart.clear();
+              controller.showOrder.value = true;
               Get.back();
               showDialog(
                 context: context,

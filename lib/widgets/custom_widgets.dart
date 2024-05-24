@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import '../controllers/bottomNav_controller.dart';
 import '../models/coffee_model.dart';
 import '../utils/constants.dart';
 
@@ -101,15 +102,71 @@ class Custom {
                 // ******* Add To Cart Button *******
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: Container(
-                    width: Get.width * 0.09,
-                    height: Get.width * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Constants.activeColor,
+                  child: GestureDetector(
+                    onTap: () {
+                      int qty = 0;
+                      bool itemExists = false;
+                      Get.find<DetailScreenController>().typeSelected.value =
+                          item.type.first;
+                      for (var element
+                          in Get.find<DetailScreenController>().myCart) {
+                        if (element.coffee == item.coffee) {
+                          itemExists = true;
+                          int index = Get.find<DetailScreenController>()
+                              .myCart
+                              .indexOf(element);
+                          Get.find<DetailScreenController>()
+                              .myCart[index]
+                              .quantity = (Get.find<DetailScreenController>()
+                                      .myCart[index]
+                                      .quantity ??
+                                  0) +
+                              1;
+                          Get.find<DetailScreenController>().paymentSummary();
+                          break; // Exit the loop since we found the item
+                        }
+                        Get.find<DetailScreenController>().paymentSummary();
+                      }
+
+                      if (!itemExists) {
+                        qty = 1;
+                        Item coffee = Item(
+                          image: item.image,
+                          coffee: item.coffee,
+                          beans: item.beans,
+                          type: item.type,
+                          price: item.price,
+                          rating: item.rating,
+                          description: item.description,
+                          sizes: item.sizes,
+                          selectedSize: Get.find<DetailScreenController>()
+                              .sizeSelection
+                              .value,
+                          quantity: qty,
+                          typeSelected: Get.find<DetailScreenController>()
+                              .typeSelected
+                              .value,
+                        );
+                        Get.find<DetailScreenController>().myCart.add(coffee);
+                        Get.find<DetailScreenController>().paymentSummary();
+                      }
+
+                      Get.find<DetailScreenController>().typeSelected.value =
+                          item.type.first;
+                      Get.find<DetailScreenController>().sizeSelection.value =
+                          0;
+                      Get.find<BottomNavController>().selectedIdx.value = 2;
+                    },
+                    child: Container(
+                      width: Get.width * 0.09,
+                      height: Get.width * 0.09,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Constants.activeColor,
+                      ),
+                      child: const Icon(Icons.add,
+                          color: Constants.lightColor, size: 22),
                     ),
-                    child: const Icon(Icons.add,
-                        color: Constants.lightColor, size: 22),
                   ),
                 ),
               ],

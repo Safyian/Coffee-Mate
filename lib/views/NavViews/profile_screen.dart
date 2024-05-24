@@ -1,4 +1,4 @@
-import 'package:coffee_mate/views/order_hostory.dart';
+import 'package:coffee_mate/views/order_history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

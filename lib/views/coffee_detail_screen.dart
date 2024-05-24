@@ -116,18 +116,6 @@ class _CoffeeDetailScreenState extends State<CoffeeDetailScreen> {
                     detailController.typeSelected.value =
                         widget.coffee.type.first;
                     detailController.sizeSelection.value = 0;
-                    // Get.showSnackbar(
-                    //   const GetSnackBar(
-                    //     title: "Success!",
-                    //     message: 'Coffee added in your Cart',
-                    //     icon: Icon(
-                    //       Icons.done,
-                    //       color: Constants.backgroundColor,
-                    //       size: 26,
-                    //     ),
-                    //     duration: Duration(seconds: 3),
-                    //   ),
-                    // );
                     Get.find<BottomNavController>().selectedIdx.value = 2;
                     Get.back();
                   },

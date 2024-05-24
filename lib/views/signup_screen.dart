@@ -88,7 +88,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           fillColor: Constants.activeColor.withOpacity(0.1),
                           hintText: "Name"),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.name,
                       validator: (val) {
                         if (val!.isEmpty) {
                           return 'Please enter your Name';
@@ -149,7 +149,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           hintText: "Password"
                           // focusColor: Colors.amber,
                           ),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
                       validator: (val) {
                         if (val!.isEmpty) {
                           return 'Please enter a Password';
@@ -177,7 +178,8 @@ class _SignupScreenState extends State<SignupScreen> {
                           hintText: "Confirm Password"
                           // focusColor: Colors.amber,
                           ),
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.visiblePassword,
+                      obscureText: true,
                       validator: (val) {
                         if (val!.isEmpty) {
                           return 'Please re-enter to confirm your Password';
